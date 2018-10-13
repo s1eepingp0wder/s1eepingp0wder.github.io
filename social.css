@@ -1,0 +1,56 @@
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 20px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 50%;
+  border: 2px white solid;
+}
+
+.fa:hover {
+    border: darkslategrey 2px solid;
+    text-shadow: 1px 1px 1px black;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+  transition: 1s;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+  transition: 1s;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+  transition: 1s;
+}
+.fa-skype {
+  background: #00aff0;
+  color: white;
+  transition: 1s;
+}
+
+.fa-instagram {
+  /*background: #125688;*/
+  background: linear-gradient(45deg, #ffe605 5%,#ff8e05 32%,#ff0505 59%,#8026c9 92%,#4f7df9 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe605', endColorstr='#4f7df9',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  color: white;
+  transition: 1s;
+}
+.fa-tumblr {
+  background: #2c4762;
+  color: white;
+  transition: 1s;
+}
+.fa-rss {
+  background: #ff6600;
+  color: white;
+  transition: 1s;
+}
