@@ -6,10 +6,29 @@ html{
 h2{
   font-weight: lighter;
   text-transform: uppercase;
+
 }
 hr{
   margin: 50px 0;
 }
+ol li{
+  list-style-type: none;
+  line-height: 50px;
+  position: relative;
+  bottom: 40px;
+}
+a{
+  text-decoration: none;
+  color: white;
+  transition: .75s;
+}
+
+a:hover{
+  text-decoration: none;
+  color: aquamarine;
+  text-shadow: 1px 1px 1px black;
+}
+
 .top{
   position: absolute;
   width: 100vw;
@@ -152,13 +171,13 @@ hr{
   padding: 10px;
   display: block;
   display: flex;
-  display-direction: row;
+  flex-direction: row;
   justify-content: space-between;
   margin-bottom: -60px;
   height: 100px;
 }
 
-li::before{
+ul li::before{
   content: url('https://i.imgur.com/78YqCys.png');
   padding: 0 10px;
   position: relative;
@@ -246,4 +265,13 @@ transition: 0.5s;
 .row img:hover{
 filter: grayscale(100%) brightness(200%) contrast(200%);
 -webkit-filter: grayscale(100%) brightness(200%) contrast(200%);
+}
+.about p{
+  text-indent: 50px;
+}
+.about img{
+  float: right;
+  margin: 20px;
+  border-radius: 50%;
+  border: 2px white solid;
 }
