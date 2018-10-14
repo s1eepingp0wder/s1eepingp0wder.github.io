@@ -10,9 +10,6 @@ var imgGen = require('js-image-generator');
 let usernick = require ("./names.json");
 var schedule = require('node-schedule');
 const config = require("./config.json");
-// Here we load the config.json file that contains our token and our prefix values.
-// config.token contains the bot's token
-// config.prefix contains the message prefix.
 var upSecs = 0
 var upMins = 0
 var upHours = 0
@@ -47,76 +44,19 @@ client.on("error",() => {
 	var Now= new Date();
 	fs.appendFileSync('CD_log.txt', Now + ": " + console.error+ "\n");
 })
-var minuteping = schedule.scheduleJob('1 * * * * *', function(){
-	//console.log("1 minute ping");
-});
 
-/* var selfcare = schedule.scheduleJob('* 1 * * * *', function(){
-					var morntasks1= [
-						//Do not include meals.
-						"taken a shower",
-						"brushed your teeth",
-					]
-					var morntasks2= [
-						"gotten dressed",
-						"done up your hair",
-					]
-					var midtasks =[
-						"taken a nap if you can",
-						"taken a walk",
-					]
-					var midtasks2=[
-						"stretched your back",
-						"drank water",
-					]
-					var nighttasks1=[
-						"done your homework (if you have any)",
-						"gotten into something comfy",
-						"brushed your teeth"
-					]
-					var nighttasks2=[
-						"bathed if you didn't get to this morning",
-						"designated a decent hour to sleep",
-						"washed your face"
-					]
-					var date = new Date();
-					  var hours = date.getHours();
-					if (hours > 6){
-						//That's early and no one is up yet!
-						return;
-					} else if (hours <= 11){
-						var morn1 = morntasks1[Math.floor(Math.random() * morntasks1.length)];
-						var morn2 = morntasks2[Math.floor(Math.random() * morntasks2.length)];
-						client.channels.get("491341671972208665").send("Good Morning, Point Nemo! ☀ If it's morning for you too, have you eaten breakfast, " +morn1+ " and " + morn2 + " yet?\n\nPeace n' love, Point Nemo.");
-					} else if (hours <= 17){
-						var mid1 = midtasks1[Math.floor(Math.random() * midtasks1.length)];
-						var mid2 = midtasks2[Math.floor(Math.random() * midtasks2.length)];
-						client.channels.get("491341671972208665").send("Good day, everyone! Have you guys eaten lunch, " +mid1+ " and " + mid2 + " yet? Taken any meds you need to?");
-					}
-					else if (hours > 17){
-						var night1 = nighttasks1[Math.floor(Math.random() * nighttasks1.length)];
-						var night2 = nighttasks2[Math.floor(Math.random() * nighttasks2.length)];
-						client.channels.get("491341671972208665").send("Good evening, everyone. Have you eaten dinner, " +night1+ " and " + night2 + " yet?");
-				} else{
-					console.log("Invalid time!");
-				}
-}); */
 
 client.on("ready", () => {
-  // This event will run if the bot starts, and logs in, successfully.
+  // When CD logs in correctly...
   const guildNames = client.guilds.map(g => g.name) .join("\n")
 		const guildID = client.guilds.map(g => g.id)
-		/* message.channel.send("Servers I'm in: \n"+"```" + guildNames + guildID + "```");  */
   console.log(`Logged in as ${client.user.tag}.`);
   console.log(`>>CD is awake.`);
 
 	var Now= new Date();
 	fs.appendFileSync('CD_log.txt', Now + ": Logged in.\n");
 
-	//schedule.scheduleJob(selfcare);
 
-  // Example of changing the bot's playing game to something useful. `client.user` is what the
-  // docs refer to as the "ClientUser".
   client.user.setActivity(`Type >>commands`);
   	setInterval( function() {
 		upSecs = upSecs + 1
@@ -143,41 +83,16 @@ client.on("guildMemberAdd", (member) => {
   client.channels.get("491354647303553024").send("Hi " + `${member.user}` + "! Welcome to Point Nemo Studios. Read over our rules, and type `>>agree` in this channel to advance.\n\nJust remember that your account must be **at least 10 minutes old** to advance! "+ `<:pizza_slice:491361099124310048>`);
 })
 
-//client.on("guildBanAdd", (member) => {
-//  return client.channels.get("491373498510344193").send(`${user}` + " got caught doing sketchy stuff.");
-// })
 
 client.on("guildMemberRemove", (member) => {
   client.channels.get("491373498510344193").send("It seems " + `${member.user}` + " sailed off into the sunset. Maybe we'll see them again, maybe not. The show must go on! "+ `<:pizza_slice:491361099124310048>`);
 })
 
 
-client.on("guildCreate", guild => {
-  // This event triggers when the bot joins a guild.
-  client.user.setActivity(`Type >>commands`);
-});
-
-client.on("guildDelete", guild => {
-  // this event triggers when the bot is removed from a guild.
-  client.user.setActivity(`Type >>commands`);
-});
-
-/* client.on("guildMemberAdd", guild => {
-
-}); */
-
-// make a new stream for each time someone starts to talk
-function generateOutputFile(channel, member) {
-  // use IDs instead of username cause some people have stupid emojis in their name
-  const fileName = `./recordings/${channel.id}-${member.id}-${Date.now()}.pcm`;
-  return fs.createWriteStream(fileName);
-}
-
 client.on("message", async message => {
   // This event will run on every single message received, from any channel or DM.
 
-  // It's good practice to ignore other bots. This also makes your bot ignore itself
-  // and not get into a spam loop (we call that "botception").
+	//Let's have him not listen to other bots. Bad idea.
   if(message.author.bot) return;
 
     if (slowtoggle ===1){
@@ -188,7 +103,7 @@ client.on("message", async message => {
     } else {
 		slowmode.add(message.author.id);
         setTimeout(() => {
-          // Removes the user from the set after a minute
+          // Removes the user from the set after 3 seconds
           slowmode.delete(message.author.id);
         }, 3000);
 	}
@@ -207,19 +122,6 @@ if( FUCK.some(word => message.content.includes(word)) ) {
   }
 
 }
-
-/*   if (message.channel.name = "general-discussion"){
-	var chancep = (Math.random()*10)
-	const parrot = message.content;
-	if (parrot.length < 150) {
-		if (chancep >= 9.9){
-			message.channel.send(parrot + "...!");
-			setTimeout(function(){
-					message.channel.send("...Sorry. Force of habit.");
-			}, (Math.random() * 3000));
-		}
-		}
-} */
 
 
 if (message.content.includes("warning headache")) {
@@ -258,30 +160,6 @@ if (message.content.includes("CD what's my name") || message.content.includes("C
   let uNick = usernick[message.author.id].usernick;
   message.channel.send("Your name is " + uNick + ".")}
 }
-/* if (message.content.includes("CD speak to me")){
-	  		  const broadcast = client
-  .createVoiceBroadcast()
-  .playFile("bgs/talktome.mp3");
-	const dispatcher = message.guild.voiceConnection.playBroadcast(broadcast);
-
-
-   }; */
-
-//May the forces above please understand that I'm only typing these so I may have my bot delete them.
-const swearWords = ["faggot", "FAGGOT", "fagg0t", "retard", "retarded", "RETARDED" ];
-if( swearWords.some(word => message.content.includes(word)) ) {
-  message.delete();
-  // Or just do message.delete();
-}
-/* if (message.content.includes("fuck")) {
-  message.channel.send("Fuck!");
-}
-if (message.content.includes("FUCK")) {
-  message.channel.send("Fuck!");
-}
-if (message.content.includes("Fuck")) {
-  message.channel.send("Fuck!");
-} */
 
   var hearts = [
     '💙',
@@ -317,35 +195,32 @@ if (message.content.includes("Fuck")) {
 } else {
 
 }
-  // Also good practice to ignore any message that does not start with our prefix,
-  // which is set in the configuration file.
-  if(message.content.indexOf(config.prefix) !== 0) return;
 
-  // Here we separate our "command" name, and our "arguments" for the command.
-  // e.g. if we have the message "+say Is this the real life?" , we'll get the following:
-  // command = say
-  // args = ["Is", "this", "the", "real", "life?"]
+//Let's make sure to ignore whatever doesn't start with our prefix.
+  if(message.content.indexOf(config.prefix) !== 0) return;
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 
+	//to be REALLY SURE...
 	if (!message.content.startsWith(">>")){
 		return
 	}
-  // Let's go with a few common example commands! Feel free to delete or change those.
+
   if(command === "ping") {
-    // Calculates ping between sending a message and editing it, giving a nice round-trip latency.
-    // The second ping is an average latency between the bot and the websocket server (one-way, not round-trip)
+		//Calculates time between the server and client using timestamps.
     const m = await message.channel.send("Ping?");
     m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
   }
 
    if (command==="slow"){
-	 //message.channel.send(slowtoggle);
+
+	//Is it off? Turn it on. Is it on? Turn it off.
 	 if (slowtoggle === 0){
 		 slowtoggle = 1;
 	 } else {
 		 slowtoggle = 0;
 	 }
+
 	 //Now let's check again.
 	 if (slowtoggle === 1){
 		 message.delete();
@@ -360,10 +235,8 @@ if (message.content.includes("Fuck")) {
   }
 
     if(command === "purge") {
-    // This command removes all messages from all users in the channel, up to 100.
-
-    // get the delete count, as an actual number.
-    const deleteCount = parseInt(args[0], 10);
+			//We count 1 for the purge command message.
+    const deleteCount = (parseInt(args[0], 10) +1);
 
     // Ooooh nice, combined conditions. <3
     if(!deleteCount || deleteCount < 2 || deleteCount > 500)
@@ -375,71 +248,26 @@ if (message.content.includes("Fuck")) {
       .catch(error => message.reply(`Couldn't delete messages because of: ${error}`));
   }
   if(command === "say") {
-    // makes the bot say something and delete the message. As an example, it's open to anyone to use.
-    // To get the "message" itself we join the `args` back into a string with spaces:
     const sayMessage = args.join(" ");
-    // Then we delete the command message (sneaky, right?). The catch just ignores the error with a cute smiley thing.
     message.delete().catch(O_o=>{});
-    // And we get the bot to say the thing:
-	message.channel.send({embed: {
-  color: 3447003,
-  description: ":speech_balloon: " + sayMessage
-}});
-    /* message.channel.send(sayMessage); */
-  }
-
-  if(command === "rp") {
-    // makes the bot say something and delete the message. As an example, it's open to anyone to use.
-    // To get the "message" itself we join the `args` back into a string with spaces:
-    const sayMessage = args.join(" ");
-    // Then we delete the command message (sneaky, right?). The catch just ignores the error with a cute smiley thing.
-    message.delete().catch(O_o=>{});
-	if (!sayMessage){
-		return
-	}
-    // And we get the bot to say the thing:
-    message.channel.send("```" + sayMessage + "```");
-  }
-
-if(command === "rpc") {
-    // makes the bot say something and delete the message. As an example, it's open to anyone to use.
-    // To get the "message" itself we join the `args` back into a string with spaces:
-    const sayMessage = args.join(" ");
-    // Then we delete the command message (sneaky, right?). The catch just ignores the error with a cute smiley thing.
-    message.delete().catch(O_o=>{});
-	if (!sayMessage){
-		return
-	}
-    // And we get the bot to say the thing:
-	 if(message.author.id=="144482938904379393" || message.author.id=="227251366190383105" || message.author.id== "466419942988972042" || message.author.id=="247890887927922689" || message.member.roles.some(r=>["Big-Hearted"].includes(r.name)) ){
-			return message.channel.send(sayMessage);
-	 }
-
+	message.channel.send(sayMessage);
   }
 
 
   if(command === "kick") {
-    // This command must be limited to mods and admins. In this example we just hardcode the role names.
-    // Please read on Array.some() to understand this bit:
-    // https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/some?
     if(!message.member.roles.some(r=>["Head Mods", "Sub Mods"].includes(r.name)) )
       return message.reply("You're not authorized to do that. You aren't on the administrator list.");
 
-    // Let's first check if we have a member and if we can kick them!
-    // message.mentions.members is a collection of people that have been mentioned, as GuildMembers.
-    // We can also support getting the member by ID, which would be args[0]
     let member = message.mentions.members.first() || message.guild.members.get(args[0]);
     if(!member)
       return message.reply("I can only kick a valid member. You need to @ them.");
     if(!member.kickable)
       return message.reply("They don't seem to be kickable. Probably a higher-up.");
 
-    // slice(1) removes the first part, which here should be the user mention or ID
-    // join(' ') takes all the various parts to make it a single string.
     let reason = args.slice(1).join(' ');
     if(!reason) reason = "No reason provided";
 
-    // Now, time for a swift kick in the nuts!
+    // Bye bye!
     await member.kick(reason)
       .catch(error => message.channel.send(`Sorry ${message.author} I couldn't kick because of : ${error}`));
     message.reply(`${member.user.tag} has been kicked by ${message.author.tag} because: ${reason}`);
@@ -451,9 +279,7 @@ if(command === "rpc") {
     if(!message.member.roles.some(r=>["Head Mods", "Sub Mods"].includes(r.name)) )
       return message.reply("You can't do that.");
 
-    // Let's first check if we have a member and if we can kick them!
-    // message.mentions.members is a collection of people that have been mentioned, as GuildMembers.
-    // We can also support getting the member by ID, which would be args[0]
+
     let amember = message.mentions.members.first() || message.guild.members.get(args[0]);
     if(!amember)
       return message.reply("I can't approve someone you don't @. I'm sorry!");
@@ -479,15 +305,6 @@ if(command === "rpc") {
 
 					}
 
-					// if (message.member.roles.has('491374965065646083')){
-					// console.log("This is a zombie.");
-					// //guildMember.addRole('491349812092993539');
-					// if (message.channel.id==="491354647303553024"){
-					// console.log("They're in the right channel.");
-					// guildMember.addRole('491376361101983745');
-					// let aUser = message.author.username;
-					// message.author.send("Hi, " + aUser + "! 💙 Welcome to **Point Nemo Studios**! I opened up the introductions channel for you to write out an intro. Just let them know your name and pronouns. Perhaps a blog or social media account so we know how to contact you should something happen. Looking forward to seeing you there!");
-
   }
 
 
@@ -501,8 +318,6 @@ if(command === "rpc") {
 }
 
   if(command === "kill" || command=== "ban") {
-    // Most of this command is identical to kick, except that here we'll only let admins do it.
-    // In the real world mods could ban too, but this is just an example, right? ;)
     if(!message.member.roles.some(r=>["Head Mods", "Sub Mods"].includes(r.name)) )
       return message.reply("You're not authorized to do that. You aren't on the administrator list.");
 
@@ -536,7 +351,6 @@ if (command === "comfort") {
 	"Baby steps, now. The day is much easier to chew if you break it down into manageable pieces first.",
 	"Healing is not a linear process. I have the equation right here but I don't think it's easy to replicate.",
 	"Just remember, thoughts are not facts. Awful things that you may believe about yourself are not automatically true. Humans are dynamic creatures and you will overcome your issues. x ",
-	"https://positivepsychologyprogram.com/cbt-cognitive-behavioral-therapy-techniques-worksheets/ \nI'm a tick tired at the moment. \n\n25 CBT Techniques and Worksheets for Cognitive Behavioral Therapy. \nHere's a list of 25 cognitive behavioral therapy techniques, CBT interventions, exercises and tools. \nTry the workbook in your own CBT practice!",
 	"Humans need food and their medication to live, please remember to take them.",
 	"What if instead of saying, ''If I criticize myself, I will be motivated to work harder'' you told yourself ''If I am kind to myself, I will be motivated to work harder.'' ? Please be kind to yourself today.",
 	"Hey bruv, can you name one good part of your day today? Doesn't have to be anything huge. Did you listen to a good song? See an old friend? Sometimes silver-linings are all we have.",
@@ -544,25 +358,14 @@ if (command === "comfort") {
 ]
 	var response = advice[Math.floor(Math.random() * advice.length)]
 	mention = message.mentions.users.first();
-	/* let uNick = usernick[message.author.id].usernick; */
-
-	//if (mention.id === message.author.id) { return  message.channel.send(":blue_heart: `Deploying Emotional Relief Software.`:blue_heart:" +"```"+ response+ "```");}
-
-	//if (mention.id === "439972905464496144") { return  message.channel.send(":blue_heart: `Deploying Emotional Relief Software.`:blue_heart:" +"```"+ response+ "```");}
 
 
 		if (mention == null) {
-/*
-		if (!usernick[message.author.id].usernick){
-	return message.channel.send(":blue_heart: `Deploying Emotional Relief Software.`:blue_heart:" +"```"+ response+ "```");
-	}
-*/
-  //return message.channel.send(":blue_heart: `Deploying Emotional Relief Software.`:blue_heart:" +"```Hey, " + uNick+ ". " + response+ "```");
+			//the mention was not there or invalid. Assume they're comforting themselves.
 return message.channel.send(":blue_heart: `Deploying Emotional Relief Software.`:blue_heart:" +"```"+ response+ "```");
-	}
+}
+		//Keep the OP anonymous by deleting the message.
 	message.delete();
-
-
 
 	 message.channel.send("Message for: " + mention + "\n\n:blue_heart: `Comforting...`:blue_heart:" +"```"+ response+ "\n\nSincerely,\nYour Friends in the Server```");
 	 if(!points[message.author.id]){
@@ -571,8 +374,7 @@ return message.channel.send(":blue_heart: `Deploying Emotional Relief Software.`
 		 };
 	 }
 
-	 //message.channel.send(":blue_heart: `Deploying Emotional Relief Software.`:blue_heart:" +"```"+ response+ "```");
-
+//Comfort points system which works like rep.
 	let pointAmt= Math.floor(Math.random()*1)+ 1;
 	let baseAmt= Math.floor(Math.random()*1)+ 1;
 
@@ -587,6 +389,8 @@ return message.channel.send(":blue_heart: `Deploying Emotional Relief Software.`
 
 	let rep = points[message.author.id].points;
 	let rMember = message.guild.member(message.author.id);
+
+	//Milestone checker
 				if (rep ===  1){
 	// At 1 point...
 	message.author.send("Hey! You! That was pretty cool. It means a lot to think of others and want to help them. Tell you what? I'll keep track of those, yeah? I'll see if anything's in the back to give as a reward for thinking of others. x")}
@@ -603,14 +407,14 @@ return message.channel.send(":blue_heart: `Deploying Emotional Relief Software.`
 	rMember.addRole("492112923943108609");} else if (rep === 50){
 			// At 50 points...
 	message.author.send("Wow! You sure have helped a lot of people. That's so nice of you. :blue_heart: You've certainly helped Point Nemo Studios out.");
-	rMember.removeRole("492112923943108609"); /* Sweet Role */
-	rMember.addRole("491390576630169600");}
+	rMember.removeRole("492112923943108609"); /* Charitable Role */
+	rMember.addRole("491390576630169600");} /* Big-Hearted Role */
 
 
 }
 
 	if (command==="alert"){
-	if (message.author.id=="144482938904379393" || message.author.id== "254235383108337674" || message.author.id== "298023324028764162" || message.author.id=="144555571457163265"){
+	if (message.author.id=="144482938904379393" || message.author.id== "254235383108337674" || message.author.id=="144555571457163265"){
 			//IDs of people who I trust with my information
 	message.delete()
 	var memberID = [
@@ -620,7 +424,7 @@ return message.channel.send(":blue_heart: `Deploying Emotional Relief Software.`
 	memberID.forEach(async id => {
     let user = client.users.get(id) || await client.fetchUser(id);
     user.send('Hey, this is an alert because it seems like Dentz is exhibiting one or more warning signs of a seizure. If you are available, can you get in contact (such as a voice call), and if a seizure happens, time how long it goes on?');
-    user.send("Try to see if you can find out if he's home alone or not, so that emergency personell know. \n\nHere's his information. I have to give a legal name because if it lasts **longer than 7 minutes**, then 911 needs to know where he is.\n\n His legal name is Daphne Liehr.\nHome Address: 977-68 Rettew Mill Road in Ephrata, PA.\nCollege Address (If he's in school): 750 East King Street in Lancaster, PA. \n\nThe local 911 _should_ be reachable at **(717) 664-1100**.");
+    user.send("Try to see if you can find out if he's home alone or not, so that emergency personell know. \n\nHere's his information. [[REDACTED FOR SAFETY]]");
     user.send("Thank you so much, luv. Don't panic because it might not happen.");
 		 });}
 	}
@@ -684,10 +488,6 @@ return message.channel.send(":blue_heart: `Deploying Emotional Relief Software.`
 
 
   }
-/*  if (command === "asl") {
-  let [age, sex, location] = args;
-  message.channel.send(`Hello ${message.author.username}, I see you're a ${age} year old ${sex} from ${location}. Wanna date?`);
-} */
  if (command === "helpline") {
 	 (message.channel.send(":mag: `Loading Helplines...`"), {time:5000});
 	 setTimeout(function(){
@@ -701,7 +501,7 @@ return message.channel.send(":blue_heart: `Deploying Emotional Relief Software.`
  }
 
  if (command === "donate") {
-	 (message.channel.send("Luckily, I don't take up THAT many resources so far...\n\n But my admin does have to pay the bills for me. I only run about 9 cents a day, but if I want to get more beefy, it'll cost more.\n\n:money_with_wings: Spare some change? <https://paypal.me/pools/c/84MCO6gPPb>"));
+	 (message.channel.send("Luckily, I don't take up THAT many resources so far...\n\n But my admin does have to pay the bills for me.\n\n:money_with_wings: Spare some change? <https://paypal.me/pools/c/84MCO6gPPb>"));
  }
 
    if(command === "stim") {
@@ -756,34 +556,15 @@ return message.channel.send(":blue_heart: `Deploying Emotional Relief Software.`
   files: [ stim ]
 })
   }
- if(command === "melodica") {
-
-		//Check to be sure they're in a vc
-		const voiceChannel = message.member.voiceChannel;
-		if (!voiceChannel) return message.channel.send("But you won't hear it!");
-		var server = servers[message.guild.id];
-		/* if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection){
-		}); */
-	   if (message.guild.voiceConnection){
-		  message.member.voiceChannel.join();
-		  const broadcast = client
-  .createVoiceBroadcast()
-  .playFile('bgs/mel-playing1.mp3');
-	const dispatcher = message.guild.voiceConnection.playBroadcast(broadcast);
-	   } else {
-				 return message.channel.send("I'm not in a voice chat.");
-				};
-
-   }
 
        if(command === "call") {
 
 		//Check to be sure they're in a vc
 		const voiceChannel = message.member.voiceChannel;
+
 		if (!voiceChannel) return message.channel.send("Sadly, I don't know how to join you if you're not also in a voice call.");
+
 		var server = servers[message.guild.id];
-		/* if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection){
-		}); */
 	   if (!message.guild.voiceConnection){
 		  message.member.voiceChannel.join();
 
@@ -800,20 +581,10 @@ return message.channel.send(":blue_heart: `Deploying Emotional Relief Software.`
    }
 
       if(command === "hangup") {
-	//const call = message.guild.id;
 	message.member.voiceChannel.leave();
 	message.channel.send("That was fun. I'd love to chat with you again. :blue_heart:");
 
    }
-
-/*    if(command === "bolt") {
-
-
-	message.channel.send("Wish me luck...!");
-	var QuestionableServer = client.guilds.find("id", "SERVERID");
-	QuestionableServer.leave()
-
-   } */
 
    if(command === "uptime") {
 
@@ -823,8 +594,6 @@ return message.channel.send(":blue_heart: `Deploying Emotional Relief Software.`
    }
 
     if(command === "sev") {
-
-
 	message.channel.send({
   files: [ "images/sev.png" ]
 })
@@ -832,8 +601,6 @@ return message.channel.send(":blue_heart: `Deploying Emotional Relief Software.`
    }
 
    if(command === "murdy") {
-
-
 	message.channel.send({
   files: [ "images/murdy.jpg" ]
 })
@@ -841,8 +608,6 @@ return message.channel.send(":blue_heart: `Deploying Emotional Relief Software.`
    }
 
     if(command === "nobody") {
-
-
 	message.channel.send({
   files: [ "images/nobody.png" ]
 })
@@ -851,6 +616,7 @@ return message.channel.send(":blue_heart: `Deploying Emotional Relief Software.`
 
     if(command === "oceanbacon") {
 
+			//This is a request to change the topic.
 	 message.delete().catch(O_o=>{});
 	message.channel.send(":octagonal_sign: This message is being displayed to warn active members to __**change the topic**__. The subject is upsetting or triggering one of your peers. If the behavior continues, the person who used this command may contact an administrator or use `>>report`.");
 	let rUser = message.author.username;
@@ -862,8 +628,7 @@ return message.channel.send(":blue_heart: `Deploying Emotional Relief Software.`
    }
 
    if(command === "report") {
-	/* message.channel.send(`<@144482938904379393> ` ); */
-	/* const channel = member.guild.channels.find('name', 'member-log'); */
+		 //reports incidents to me.
 	let reason = args.join(' ');
 	let rUser = message.author.username;
 	let Server = message.guild.name;
@@ -878,13 +643,11 @@ return message.channel.send(":blue_heart: `Deploying Emotional Relief Software.`
    setTimeout(function(){
      message.author.send ("Thank you, " +rUser+ "! It shouldn't take too long if Dentz is online.");
      message.author.send ("So, what I sent Dentz is this. \n\n**Reason**:" + reason + "\n**Channel the incident occurred:** " + Channel + ".");
-	}, 12000);
+	}, 8000);
 	message.channel.stopTyping();
    };
 
 	 if(command === "blacklist") {
-	 /* message.channel.send(`<@144482938904379393> ` ); */
-	 /* const channel = member.guild.channels.find('name', 'member-log'); */
 	 let reason = args.join(' ');
 	 let rUser = message.author.username;
 	 let Server = message.guild.name;
@@ -896,24 +659,6 @@ return message.channel.send(":blue_heart: `Deploying Emotional Relief Software.`
 	 client.channels.get("491355927820369931").send("**" + rUser + "**: " + reason);
 	 return message.author.send("I sent a blacklist request for " + reason + " to " + Server + ".")
  }
-
-
-
-/*    if(command === "speak") {
-
-	let Admins = message.guild.members.get('id', '144482938904379393');
-	message.channel.send(`<@&335202102991388673> ?`)
-
-   } */
-
-/*    if(command === "spy") {
-	if(!message.member.roles.some(r=>["Head Mods", "Sub Mods"].includes(r.name)) )
-      return message.reply("You're not authorized to do that. You aren't on the administrator list.");
-		const guildNames = client.guilds.map(g => g.name) .join("\n")
-		const guildID = client.guilds.map(g => g.id)
-		message.channel.send("Servers I'm in: \n"+"```" + guildNames + guildID + "```");
-		message.channel.send (client.guilds.get("379029153472577539"))
-   } */
 
     if(command === "gorillaz") {
 			 var oword = [
@@ -973,191 +718,16 @@ var Z = zword[Math.floor(Math.random() * zword.length)]
 	if (floodControl.has(message.author.id)) {
             message.channel.send("Alright, calm down a moment...");
     } else {
-
-           // the user can type the command ... your command code goes here :)
 		   message.channel.send("The G in Gorillaz stands for Gay. \n```G- Gay\nO- " + O + "\nR- " + R + "\nI- " + I + "\nL- " + L + "\nL- " + L2 + "\nA- " + A + "\nZ- " + Z + "```")
         floodControl.add(message.author.id);
         setTimeout(() => {
-          // Removes the user from the set after a minute
+          // Removes the user from the set after 10 seconds
           floodControl.delete(message.author.id);
         }, 10000);
     }
 
    }
 
-if(command === "kin") {
-	var kin = [
-   "Onceler",
-   "Cuphead",
-   "BEN Drowned",
-   "Jeff the Killer",
-   "Slenderman",
-   "2-D Gorillaz",
-   "Murdoc Niccals",
-   "Noodle Guitarist from Gorillaz",
-   "Russel Gorillaz",
-   "Del Gorillaz",
-   "Cyborg Noodle",
-   "Shadow the Hedgehog",
-   "Sonic the Hedgehog",
-   "Sonichu",
-   "Peter Parker",
-   "Hannah Montana",
-   "Danny Fenton",
-   "Tumblr User S1eepingP0wder",
-   "Tumblr User tickertapes",
-   "Noreen",
-   "Cyborg 2D",
-   "God",
-   "Jamie Hewlett/Banksy",
-   "Jamie Hewlett (sunglasses)",
-   "Damon Albarn",
-   "Damon Albarn (Bowlcut)",
-   "Damon Albarn (Bald)",
-   "Damon Albarn (Beard)",
-   "All of Blur",
-   "Bart Simpson",
-   "Todd Howard",
-   "Eric Andre",
-   "Hannibal Buress",
-   "Big Balls McGuiness",
-   "The Boogieman Gorillaz",
-   "Tabby (Dentz' cat)",
-   "Lola (Blacky's dog)",
-   "Link from The Legend of Zelda",
-   "Jack Black",
-   "Lavender Rarity",
-   "Jamiebot",
-   "tumblr user nomoreunicornsanymore",
-   "Biggie Cheese",
-   "That time Murdoc sniffed the camera",
-   "Timmy Turner",
-   "Graham Coxon",
-   "Alex James",
-   "David Rowntree",
-   "Tumblr user ashstoptalking",
-   "Tumblr user thenownow",
-   "Me",
-   "The next person who posts",
-   "Toes",
-   "Noel Gallagher",
-   "every member in the band, Gorillaz",
-   "Snoop Dogg",
-   "Young Lesbian Legend Ree",
-   "Lesbian Legend Blacky",
-   "Gay Legend Zebra Katz",
-   "Damon Albot",
-   "This half-used bottle of deodorant",
-   "Mr.Tembo",
-   "Shaun Ryder",
-   "Shaun Ryder (Live DARE performance)",
-   "Jess from Point Nemo studios",
-   "The entirety of the Point Nemo server",
-   "John Mulaney",
-   "Despacito",
-   "Uncle Murdy",
-   "Murdy",
-   "Several people are typing...",
-   "Dentz' Vape",
-   "Adrian",
-   "Ash's cat"
-]
-var yesno = [
-   "are",
-   "are **not**",
-   "are sometimes",
-   "never will be",
-   "someday will be",
-]
-var countrylist = [
-"America",
-"England",
-"Japan",
-"Thailand",
-"Canada",
-"Egypt",
-"`[REDACTED]`",
-"Saturn",
-"Mexico",
-"France",
-"Denmark",
-"China",
-"Iceland",
-]
-var region2 = countrylist[Math.floor(Math.random() * countrylist.length)]
-var KIN2 = kin[Math.floor(Math.random() * kin.length)]
-var similarity = [
-   "was vastly different, given you were ",
-   "was the same. Perhaps the only difference was that you were ",
-   "was merely uneventful. Maybe that's why you don't remember you were ",
-   "was so, so scary. You were ",
-   "confused everyone involved, because you were ",
-   "is the exact same as the source. Fans speculate (incorrectly) that you were ",
-   "is primarily based in " + region2 + "; you, however, were ",
-   "was rather eventful. You had been known for defeating " +KIN2 + ", your arch rival. They put your name down in history and said you were ",
-]
-var region = countrylist[Math.floor(Math.random() * countrylist.length)]
-var similar = similarity[Math.floor(Math.random() * similarity.length)]
-var type = [
-   "a bot",
-   "a robot",
-   "not actually real",
-   "a cyborg",
-   "a villain",
-   "the main villain",
-   "a ghost",
-   "a furry",
-   "a demon",
-   "posting feet in general..",
-   "a werewolf",
-   "a diehard vape fan",
-   "in a fierce rivalry with " +KIN2,
-   "the hero",
-   "looking for your canonmate, " +KIN2,
-   "roommates with " +KIN2,
-   "kin with " +KIN2,
-   "born in " +region,
-   "living mostly in " +region,
-   "invalidating "+KIN2+ " kins",
-   "killed by "+KIN2,
-   "a gay",
-   "a lesbian",
-   "bi",
-   "trans",
-   "non-binary",
-   "cis",
-   "straight",
-   "actually making a run for it by moving to "+region2,
-   "travelling the globe from "+region+ " to " +region2+ ", with " +KIN2+ ". However, along the way, you got into a bit of a scuffle. It all came to an end when you finally decided to put ''" +KIN2+ " kins do not interact'' on your blog",
-   "plotting to steal the spotlight from the protagonist. Try kinning "+KIN2+ " next time",
-   "not British, at least",
-   "turned into " +KIN2+ " by a witch",
-   KIN2+ "'s boss",
-   KIN2+ "'s worst enemy",
-   "poisoned by " +KIN2 + " with a potion",
-   KIN2+"'s parent",
-   "charged with burning down Kong Studios",
-   "caught eating toes",
- ]
-var KIN = kin[Math.floor(Math.random() * kin.length)]
-
-var yn = yesno[Math.floor(Math.random() * yesno.length)]
-var species = type[Math.floor(Math.random() * type.length)]
-
-	if (floodControl.has(message.author.id)) {
-            message.channel.send("I'm still sifting through the gov't files...");
-    } else {
-
-
-		   message.channel.send("```GOVERNMENT ASSIGNED KIN:```\n" + KIN + "." + "\nYou " + yn + " doubles friendly. Your canon "+ similar + species + ".")
-        floodControl.add(message.author.id);
-        setTimeout(() => {
-          // Removes the user from the set after a minute
-          floodControl.delete(message.author.id);
-        }, 10000);
-    }
-
-   }
 
 if (command === '478'){
 	message.channel.send("Alright. I'm hearing you need to walk through the 4-7-8 breathing cycle. Correct? ```Reply 'Yes' or 'No'. I'll wait 6 seconds.```");
