@@ -8,7 +8,6 @@ console.log(config);
 
 client.on('ready', function(){
     console.log("I am ready");
-    //console.log(client.user.username);
 });
 
 client.on("error",() => {
@@ -77,7 +76,6 @@ client.on('message', function(message){
         (async function(){
             var result = await promise;
             if(result){
-                //message.channel.send(result);
                 function typing() {
   message.channel.send(result);
   message.channel.stopTyping();
