@@ -1,0 +1,293 @@
+html{
+  background-color: black;
+  font-family: sans-serif;
+  cursor: default;
+}
+h2{
+  font-weight: lighter;
+  text-transform: uppercase;
+
+}
+hr{
+  margin: 50px 0;
+}
+ol li{
+  list-style-type: none;
+  line-height: 50px;
+  position: relative;
+  bottom: 40px;
+}
+a{
+  text-decoration: none;
+  color: white;
+  transition: .75s;
+}
+
+a:hover{
+  text-decoration: none;
+  color: aquamarine;
+  text-shadow: 1px 1px 1px black;
+}
+video {
+width: 100vw;
+height: auto;
+z-index: -100;
+transition: 1s opacity;
+}
+
+video poster{
+  width: 100vw;
+  height: auto;
+}
+
+.top{
+  position: absolute;
+  width: 100vw;
+  left: 0;
+  top: 0;
+  padding: 3px 0;
+  background-color: black;
+  z-index: 1;
+}
+.top ul{
+  display: flex;
+  justify-content: flex-start;
+}
+.top ul li{
+  text-transform: uppercase;
+  color: white;
+  font-size: 20px;
+  display: inline;
+  margin: 0 80px;
+  transition: 0.5s;
+}
+.top ul li::after{
+  content: ' \00bb';
+  opacity: 0;
+  color: red;
+  transition: 0.5s;
+}
+.top ul li:hover::after{
+  opacity: 1;
+  color: yellow;
+}
+.bottom{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  padding: 3px 0;
+  background-color: black;
+  z-index: 1;
+}
+.bottom ul{
+  text-transform: uppercase;
+  display: flex;
+  justify-content: flex-end;
+}
+.bottom ul li{
+  color: white;
+  font-size: 20px;
+  display: inline;
+  margin: 0 80px;
+  transition: 0.5s;
+}
+.bottom ul li::after{
+  content: ' \00bb';
+  opacity: 0;
+  transition: 0.5s;
+  color: red;
+}
+.bottom ul li:hover::after{
+  opacity: 1;
+  color: yellow;
+}
+#wrapper{
+  background-color: transparent;
+  height: 98vh;
+  width: 100vw;
+  position: absolute;
+  top:0;
+  left:0;
+}
+.descriptionbox{
+  background-color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  top: 80px;
+  left: 10px;
+  width: 30vw;
+  max-width: 30vw;
+  height: 60vh;
+  max-height: 60vh;
+  padding: 30px;
+  overflow: scroll;
+  border: 2px white solid;
+  border-radius: 10px;
+}
+.itembox{
+  background-color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  top: 80px;
+  right: 10px;
+  width: 55vw;
+  max-width: 55vw;
+  height: 75vh;
+  max-height: 75vh;
+  padding: 30px;
+  overflow: scroll;
+  border: 2px white solid;
+  border-radius: 10px;
+}
+.contactbox{
+  background-color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  top: 80px;
+  left: 10px;
+  width: 92vw;
+  max-width: 92vw;
+  height: 75vh;
+  max-height: 75vh;
+  padding: 30px;
+  overflow: scroll;
+  border: 2px white solid;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+.bigbox{
+  background-color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  top: 80px;
+  left: 10px;
+  width: 92vw;
+  max-width: 92vw;
+  height: 75vh;
+  max-height: 75vh;
+  padding: 30px;
+  overflow: scroll;
+  border: 2px white solid;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0 50px 0 0;
+  background-color: navy;
+}
+.row{
+  overflow: hidden;
+  padding: 10px;
+  display: block;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: -60px;
+  height: 100px;
+}
+
+ul li::before{
+  content: url('https://i.imgur.com/78YqCys.png');
+  padding: 0 10px;
+  position: relative;
+  top: 5px;
+}
+
+nav a{
+  color: silver;
+  text-decoration: none;
+  transition: color .3s;
+}
+nav a:hover{
+  color: yellow;
+  cursor: pointer;
+}
+/*ul li{
+  list-style-image: url('https://i.imgur.com/78YqCys.png');
+}*/
+.centerwrapper{
+  margin: 0 auto;
+}
+.contactbox p{
+  width: 50%;
+}
+
+.required::before{
+  content:"* ";
+  color: maroon;
+}
+.optional{
+  text-indent: 11px;
+}
+textarea{
+  position: relative;
+  left: 100px;
+  border: 1px black solid;
+  border-radius: 10px;
+  padding: 10px;
+  resize: none;
+}
+.wide{
+  position: absolute;
+  left: 130px;
+  border: 1px black solid;
+  border-radius: 3px;
+  height: 10px;
+  padding: 5px;
+  width: 235px;
+  max-width: 235px;
+}
+.button{
+  position: relative;
+  top: 30px;
+  right: 130px;
+  margin: 20px;
+  background-color: deepskyblue;
+  color: black;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: 1px black solid;
+  transition: 0.5s;
+}
+.button:hover{
+  background: blue;
+  color: white;
+}
+
+.socialwrapper{
+  position: relative;
+  top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.row{
+  overflow: hidden;
+  padding: 50px;
+  display: block;
+  display: flex;
+  display-direction: row;
+  justify-content: space-between;
+  height: auto;
+}
+.row img{
+transition: 0.5s;
+}
+
+.row img:hover{
+filter: grayscale(100%) brightness(200%) contrast(200%);
+-webkit-filter: grayscale(100%) brightness(200%) contrast(200%);
+}
+.about p{
+  text-indent: 50px;
+}
+.about p:last-child{
+  text-indent: 0px;
+}
+.about img{
+  float: right;
+  margin: 20px;
+  border-radius: 50%;
+  border: 2px white solid;
+}
