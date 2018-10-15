@@ -29,6 +29,7 @@ a:hover{
   text-shadow: 1px 1px 1px black;
 }
 
+
 .top{
   position: absolute;
   width: 100vw;
@@ -93,11 +94,13 @@ a:hover{
 }
 #wrapper{
   background-color: darkslategrey;
-  height: 98vh;
-  width: 100vw;
-  position: absolute;
-  top:0;
-  left:0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: -100;
 }
 .descriptionbox{
   background-color: rgba(255, 255, 255, 0.5);
@@ -234,13 +237,15 @@ textarea{
   right: 130px;
   margin: 20px;
   background-color: deepskyblue;
-  color: white;
+  color: black;
   padding: 10px 15px;
-  border-radius: 50%;
+  border-radius: 10px;
   border: 1px black solid;
+  transition: 0.5s;
 }
 .button:hover{
   background: blue;
+  color: white;
 }
 
 .socialwrapper{
@@ -268,6 +273,9 @@ filter: grayscale(100%) brightness(200%) contrast(200%);
 }
 .about p{
   text-indent: 50px;
+}
+.about p:last-child{
+  text-indent: 0px;
 }
 .about img{
   float: right;
