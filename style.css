@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Patrick+Hand+SC');
 html{
   background-color: black;
   font-family: sans-serif;
@@ -8,8 +9,13 @@ h2{
   text-transform: uppercase;
 
 }
+h3{
+  font-family: 'Patrick Hand SC', cursive;
+  letter-spacing: 1px;
+  font-size: 2em;
+}
 hr{
-  margin: 50px 0;
+  border: 1px solid black;
 }
 ol li{
   list-style-type: none;
@@ -95,12 +101,33 @@ a:hover{
 #wrapper{
   background-color: darkslategrey;
   position: fixed;
+  height: 90vh;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  overflow: hidden;
+  overflow: visible;
   z-index: -100;
+  padding: 0 0 5% 0;
+}
+.blogwrapper{
+  background-color: darkslategrey;
+  position: fixed;
+  height: 85vh;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: scroll;
+  z-index: -100;
+  padding: 0 0 5% 0;
+}
+.bloglogo{
+  height: 20px;
+  display: inline-block;
+}
+.blogwrapper p::first-letter{
+  font-weight: bold;
 }
 .descriptionbox{
   background-color: rgba(255, 255, 255, 0.5);
@@ -123,8 +150,8 @@ a:hover{
   right: 10px;
   width: 55vw;
   max-width: 55vw;
-  height: 75vh;
-  max-height: 75vh;
+  height: 65vh;
+  max-height: 65vh;
   padding: 30px;
   overflow: scroll;
   border: 2px white solid;
@@ -159,6 +186,27 @@ a:hover{
   border: 2px white solid;
   border-radius: 10px;
   margin: 0 auto;
+}
+.blogbox{
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 33vw;
+  position: relative;
+  top: 10%;
+  max-width: 33vw;
+  height: 33vh;
+  max-height: 33vh;
+  padding: 30px;
+  overflow: scroll;
+  border: 2px white solid;
+  border-radius: 10px;
+  margin: 0 auto 30px auto;
+}
+
+.blogbox p:last-child::after{
+  display: flex;
+  content: url('https://i.imgur.com/ckJHCiS.png');
+  justify-content: center;
+  margin-top: 30px;
 }
 ::-webkit-scrollbar {
   -webkit-appearance: none;
