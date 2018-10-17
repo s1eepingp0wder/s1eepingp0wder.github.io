@@ -112,7 +112,7 @@ a:hover{
   height: 60vh;
   max-height: 60vh;
   padding: 30px;
-  overflow: scroll;
+  overflow-y: scroll;
   border: 2px white solid;
   border-radius: 10px;
 }
@@ -126,7 +126,7 @@ a:hover{
   height: 75vh;
   max-height: 75vh;
   padding: 30px;
-  overflow: scroll;
+  overflow-y: scroll;
   border: 2px white solid;
   border-radius: 10px;
 }
@@ -140,7 +140,7 @@ a:hover{
   height: 75vh;
   max-height: 75vh;
   padding: 30px;
-  overflow: scroll;
+  overflow-y: scroll;
   border: 2px white solid;
   border-radius: 10px;
   margin: 0 auto;
@@ -155,7 +155,7 @@ a:hover{
   height: 75vh;
   max-height: 75vh;
   padding: 30px;
-  overflow: scroll;
+  overflow-y: scroll;
   border: 2px white solid;
   border-radius: 10px;
   margin: 0 auto;
