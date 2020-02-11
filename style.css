@@ -330,4 +330,5 @@ filter: grayscale(100%) brightness(200%) contrast(200%);
   margin: 20px;
   border-radius: 50%;
   border: 2px white solid;
+  width: 325px;
 }
