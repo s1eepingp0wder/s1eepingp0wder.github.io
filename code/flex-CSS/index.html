@@ -2,35 +2,145 @@
 <head>
   <Title>Experiment: Flex</title>
   <link href="styles.css" rel="stylesheet" type="text/css" />
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Rock+Salt" rel="stylesheet">
 </head>
 <body>
-  <div id="blur"></div>
-  <h2>Favourite Blur Songs</h2>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+  <div id="main">
+      <h1 id="stop">Favourite Now Now Songs</h1>
       <section class="songs">
-            <div><h3>Beetlebum</h3>
-              <p>I love this song because the riffs are amazing. Damon does a great job explaining the effect of addiction on oneself and others. I relate closely to this song. I use it to cope with my own issues.</p>
+            <div id="tranz"><h2>Tranz</h2>
+              <p>When you get back on a Saturday night and your head is caving in...</p>
+              <p>Do you look like me? Do you feel like me?</p>
+              <p>Do you turn into your effigy?</p>
+              <p class="spaced">Do you dance like this... forever?</p>
             </div>
-            <div><h3>Boys and Girls</h3>
-              <p>I love Boys and Girls because it explores bisexuality. I wasn't sure on my sexuality for the longest time but then I learned I was bi. I felt pretty bad at first, like I was greedy or looking for attention. Boys and Girls is a positive song, and it promotes self-love.</p>
+            <div id="sorcererz"><h2>Sorcererz</h2>
+              <p class="spaced">Hey... What is this drumming I'm hearing now? All over me?</p>
+              <p>Everybody cool down, everybody see yourself.</p>
+              <p>Everybody on time, on time.</p>
+              <p>Everybody mining, everybody mining their <strong>inner vision</strong>.</p>
             </div>
-            <div><h3>Coffee and TV</h3>
-              <p>This song gives me recovery vibes. It reminds me of bouncing back from something traumatic. Starting new. Healing and stuff. It reminds me of becoming a better person and emerging even stronger than before.</p>
+            <div id="onepercent"><h2>One Percent</h2>
+              <p>Come by the long lake deep in the summer day</p>
+              <p>I'll be there with you</p>
+              <p>(That's where I heard it for myself)</p>
+              <p>On the training ground for the new world</p>
+              <p class="spaced">You heard it too</p>
             </div>
       </section>
-  <!-- Gorillaz -->
-      <div id="gorillaz"></div>
-      <h2>Favourite Gorillaz Songs</h2>
           <section class="songs">
-                <div><h3>Sleeping Powder</h3>
-                  <p>I love this song because the riffs are amazing. Damon does a great job explaining the effect of addiction on oneself and others. I relate closely to this song. I use it to cope with my own issues.</p>
+              <!-- onmouseover="myScript('fireflies','jpg')" -->
+                <div id="fireflies"><h2>Fire Flies</h2>
+                  <p>All you ever get from the sonnet is the count of the falling men</p>
+                  <p>Every calling cost made to your heart</p>
+                  <p>You were in the kind of game that put the force in me</p>
+                  <p class="spaced">I was ever chasing fireflies</p>
                 </div>
-                <div><h3>Tranz</h3>
-                  <p>I love Boys and Girls because it explores bisexuality. I wasn't sure on my sexuality for the longest time but then I learned I was bi. I felt pretty bad at first, like I was greedy or looking for attention. Boys and Girls is a positive song, and it promotes self-love.</p>
+                <div id="soukeye"><h2>Souk Eye</h2>
+                  <p>I wanna stay with you for a long time, I wanna be your stone, love.</p>
+                  <p>I wanna see it lay in your eyes when I'm leaving with your love.</p>
+                  <p class="spaced">I will always think about you</p>
+                  <p>That's why I'm calling you back</p>
+                  <p>'Cause I gotta run soon</p>
                 </div>
-                <div><h3>Dracula</h3>
-                  <p>This song gives me recovery vibes. It reminds me of bouncing back from something traumatic. Starting new. Healing and stuff. It reminds me of becoming a better person and emerging even stronger than before.</p>
+                <div id="kansas"><h2>Kansas</h2>
+                  <p>Am I incapable of healing?</p>
+                  <p>The memory of my fall from grace in your heart</p>
+                  <p>I'm on my journey home with no fuel, alone</p>
+                  <p class="spaced">I think I'll coast a while</p>
                 </div>
           </section>
+      </div>
+      <div id="spin" class="default"></div>
+      <script>
+  // function myScript(name, filetype) {
+  //   document.getElementById("spin").style.background = "transparent url("+name+"."+filetype+") no-repeat center top";
+  //   document.getElementById("spin").style.backgroundSize="cover";
+  // }
+  $('#tranz').hover(function(){
+    // Remove first.
+    $('#spin').removeClass('default');
+    $('#spin').removeClass('sorcererz');
+    $('#spin').removeClass('onepercent');
+    $('#spin').removeClass('fireflies');
+    $('#spin').removeClass('soukeye');
+    $('#spin').removeClass('kansas');
+    // Now add.
+    $('#spin').addClass('tranz');
+});
+
+$('#sorcererz').hover(function(){
+  // Remove first.
+  $('#spin').removeClass('default');
+  $('#spin').removeClass('tranz');
+  $('#spin').removeClass('onepercent');
+  $('#spin').removeClass('fireflies');
+  $('#spin').removeClass('soukeye');
+  $('#spin').removeClass('kanses');
+  // Now add.
+  $('#spin').addClass('sorcererz');
+});
+
+$('#onepercent').hover(function(){
+  // Remove first.
+  $('#spin').removeClass('default');
+  $('#spin').removeClass('tranz');
+  $('#spin').removeClass('sorcererz');
+  $('#spin').removeClass('fireflies');
+  $('#spin').removeClass('soukeye');
+  $('#spin').removeClass('kansas');
+  // Now add.
+  $('#spin').addClass('onepercent');
+});
+
+$('#fireflies').hover(function(){
+  // Remove first.
+  $('#spin').removeClass('default');
+  $('#spin').removeClass('tranz');
+  $('#spin').removeClass('sorcererz');
+  $('#spin').removeClass('onepercent');
+  $('#spin').removeClass('soukeye');
+  $('#spin').removeClass('kansas');
+  // Now add.
+  $('#spin').addClass('fireflies');
+});
+
+$('#soukeye').hover(function(){
+  // Remove first.
+  $('#spin').removeClass('default');
+  $('#spin').removeClass('tranz');
+  $('#spin').removeClass('sorcererz');
+  $('#spin').removeClass('onepercent');
+  $('#spin').removeClass('fireflies');
+  $('#spin').removeClass('kansas');
+  // Now add.
+  $('#spin').addClass('soukeye');
+});
+
+$('#kansas').hover(function(){
+  // Remove first.
+  $('#spin').removeClass('default');
+  $('#spin').removeClass('tranz');
+  $('#spin').removeClass('sorcererz');
+  $('#spin').removeClass('onepercent');
+  $('#spin').removeClass('fireflies');
+  $('#spin').removeClass('soukeye');
+  // Now add.
+  $('#spin').addClass('kansas');
+});
+
+$('#stop').hover(function(){
+  // Remove them all.
+  $('#spin').removeClass('default');
+  $('#spin').removeClass('sorcererz');
+  $('#spin').removeClass('onepercent');
+  $('#spin').removeClass('fireflies');
+  $('#spin').removeClass('soukeye');
+  $('#spin').removeClass('kansas');
+  $('#spin').removeClass('tranz');
+
+});
+  </script>
 </body>
 </html>

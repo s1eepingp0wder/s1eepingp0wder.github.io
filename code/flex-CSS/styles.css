@@ -1,109 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap');
 * {
-  font-family: 'Open Sans',Helvetica, Arial, sans-serif;
+  font-family: monospace;
   font-size: 1em;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
 }
 
 body{
-  background: darkgrey;
-}
-header{
-  display: none;
-}
-hr {
-  width: 50%;
-  color: deepskyblue;
+  background: #111111;
 }
 
 h1{
-  font-family: 'Rock Salt', cursive;
-  font-size: 3em;
+  font-size: 4em;
   text-align: center;
-  color: navy;
-}
-h2{
-  font-family: 'Rock Salt', cursive;
-  margin-top: 1em;
-  font-size: 2em;
-  text-align: center;
-  color: powderblue;
-}
-h3{
-  font-size: 1.5em;
-  color: powderblue;
+  color: gainsboro;
+  font-family: 'Mr Dafoe', cursive;
+  text-shadow: 2px 2px 4px black;
   font-weight: 300;
 }
-#blur{
-  background: url('https://flavorwire.files.wordpress.com/2015/02/blur_63.jpg') center bottom;
-  background-size: cover;
-  background-attachment: scroll;
-  display: block;
-  filter: blur(5px);
-  -webkit-filter: blur(5px) contrast(20%) grayscale(100%);
-  height: 100vh;
-  width: 120%;
-  left: -10%;
-  position: fixed;
-  top: 0;
-  z-index: -9999999;
+h2{
+  font-size: 3em;
+  color: powderblue;
+  font-weight: 100;
+  font-family: 'Mr Dafoe', cursive;
+  margin-bottom: -.3em;
 }
-#gorillaz{
-  background: url('https://pbs.twimg.com/media/C8bO0V6UwAA5hIn.jpg') center center;
-  background-size: cover;
-  background-attachment: scroll;
-  display: block;
-  filter: blur(5px);
-  -webkit-filter: blur(5px) contrast(20%) grayscale(100%);
-  height: 100vh;
-  width: 120%;
-  left: -10%;
-  position: fixed;
-  top: 50%;
-  z-index: -9999999;
+#main{
+    position: absolute;
+    position:relative;
+    margin:0 auto;
+    margin: auto;
+    z-index: 0;
 }
-
-#horoscope{
-  background: url('http://s1.1zoom.me/big0/508/Planets_Saturn_planet_Planetary_ring_519539_1280x720.jpg') center center;
-  background-size: cover;
-  display: block;
-  filter: blur(5px);
-  -webkit-filter: blur(5px) contrast(20%) grayscale(100%);
-  height: 50vh;
-  width: 120%;
-  left: -10%;
-  position: fixed;
-  z-index: -9999998;
-}
-
-.signs{
-  position: inherit;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: 5em;
-  z-index: 2;
-  background: rgba(0, 0, 0, 0.5);
-}
-.signs div{
-  position: inherit;
-  color: white;
-  max-width: 30em;
-  padding: 0 2em;
-  border-right: 3px salmon solid;
-}
-
-.signs div:last-child{
-  border-right: 0;
-}
-
 .songs{
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  margin-bottom: 5em;
+  margin-bottom: 2em;
   z-index: 2;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7);
 }
-
 
 .songs div{
   position: inherit;
@@ -115,4 +52,82 @@ h3{
 
 .songs div:last-child{
   border-right: 0;
+}
+.spaced{
+    letter-spacing: 5px;
+}
+#spin{
+   min-width: 100vw;
+   min-height: 100vh;
+   position: absolute;
+   top:0;
+   left:0;
+   overflow: hidden;
+   text-align: center;
+   -webkit-align-items: center;
+   -ms-flex-align: center;
+   align-items: center;
+   display: -webkit-flex;
+   display: flex;
+   z-index: -9999;
+   /* animation: spin 100s linear infinite; */
+}
+#spin::before {
+   content: "";
+   width: 100vw;
+   height: 100vw;
+   position: absolute;
+   animation: spin 100s linear infinite;
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-position: center center;
+   transition: background-image 1s;
+}
+.default::before {
+    background-image: url('default-bg.png');
+}
+.tranz::before {
+    background-image: url('tranz.jpg');
+    filter: blur(7px) brightness(70%);
+    -webkit-filter: blur(7px) brightness(70%);
+}
+.sorcererz::before {
+    background-image: url('sorcererz.png');
+    filter: blur(7px) brightness(70%);
+    -webkit-filter: blur(7px) brightness(70%);
+}
+.onepercent::before {
+    background-image: url('onepercent.jpg');
+    filter: blur(7px) brightness(70%);
+    -webkit-filter: blur(7px) brightness(70%);
+    animation: spin 1000s linear infinite;
+}
+.fireflies::before {
+    background-image: url('fireflies.jpg');
+    filter: blur(7px) brightness(70%);
+    -webkit-filter: blur(7px) brightness(70%);
+}
+.soukeye::before {
+
+    background-image: url('soukeye.png');
+    filter: blur(7px) brightness(70%);
+    -webkit-filter: blur(7px) brightness(70%);
+}
+.kansas::before {
+    background-image: url('kansas.jpg');
+    filter: blur(7px) brightness(70%);
+    -webkit-filter: blur(7px) brightness(70%);
+}
+#stop{
+    width: 50%;
+    margin: auto;
+}
+
+@keyframes spin {
+   0% {
+      transform: rotate(0deg) scale(1.2);
+   }
+   100% {
+      transform: rotate(360deg) scale(1.2);
+   }
 }
